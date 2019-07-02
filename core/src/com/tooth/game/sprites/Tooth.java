@@ -2,6 +2,7 @@ package com.tooth.game.sprites;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.tooth.game.ToothGame;
 
@@ -10,6 +11,7 @@ public class Tooth {
     private static final int MOVEMENT = 100;
     private Vector3 position;
     private Vector3 velocity;
+    private Rectangle bounds;
     private Texture tooth;
 
     public Tooth(int x, int y)
@@ -17,6 +19,7 @@ public class Tooth {
         position = new Vector3(x, y, 0);
         velocity = new Vector3(50, 0, 0);
         tooth = new Texture("toothfairymed.png");
+        bounds = new Rectangle(x, y, tooth.getWidth(), tooth.getHeight());
     }
 
     public void update(float dt)
@@ -39,6 +42,7 @@ public class Tooth {
         position.add(MOVEMENT * dt, velocity.y, 0);
 
         velocity.scl(1/dt);
+        bounds.setPosition(position.x, position.y);
 
     }
 
@@ -58,5 +62,15 @@ public class Tooth {
     public void dash()
     {
         position.add(getPosition().x + 200);
+    }
+
+    public Rectangle getBounds()
+    {
+        return bounds;
+    }
+
+    public void dispose()
+    {
+        tooth.dispose();
     }
 }
