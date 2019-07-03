@@ -31,7 +31,7 @@ public class PlayState extends State {
         tooth = new Tooth(50, 300);
         cam.setToOrtho(false, ToothGame.WIDTH / 2, ToothGame.HEIGHT / 2);
         bg = new Texture("blurcolorshift.png");
-        ground = new Texture("ground.png");
+        ground = new Texture("groundcandy2.png");
         groundPos1 = new Vector2(cam.position.x - cam.viewportWidth / 2, GROUND_OFFSET);
         groundPos2 = new Vector2((cam.position.x - cam.viewportWidth / 2) + ground.getWidth(), GROUND_OFFSET);
         tubes = new Array<Tube>();

@@ -2,6 +2,7 @@ package com.tooth.game.sprites;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.tooth.game.ToothGame;
@@ -12,18 +13,21 @@ public class Tooth {
     private Vector3 position;
     private Vector3 velocity;
     private Rectangle bounds;
-    private Texture tooth;
+    private Texture texture;
+    private Animation toothAnimation;
 
     public Tooth(int x, int y)
     {
         position = new Vector3(x, y, 0);
         velocity = new Vector3(50, 0, 0);
-        tooth = new Texture("toothfairymed.png");
-        bounds = new Rectangle(x, y, tooth.getWidth(), tooth.getHeight());
+        texture = new Texture("toothfairyanim.png");
+        toothAnimation = new Animation(new TextureRegion(texture), 2, 0.5f);
+        bounds = new Rectangle(x, y, texture.getWidth() / 2, texture.getHeight());
     }
 
     public void update(float dt)
     {
+        toothAnimation.update(dt);
         if (position.y > 0)
         {
             velocity.add(0, GRAVITY, 0);
@@ -35,9 +39,9 @@ public class Tooth {
         {
             position.y = 0;
         }
-        if ((position.y + getTexture().getHeight()) > (ToothGame.HEIGHT / 2))
+        if ((position.y + getTexture().getRegionHeight()) > (ToothGame.HEIGHT / 2))
         {
-            position.y = (int)(ToothGame.HEIGHT / 2) - getTexture().getHeight();
+            position.y = (int)(ToothGame.HEIGHT / 2) - getTexture().getRegionHeight();
         }
         position.add(MOVEMENT * dt, velocity.y, 0);
 
@@ -50,13 +54,13 @@ public class Tooth {
         return position;
     }
 
-    public Texture getTexture() {
-        return tooth;
+    public TextureRegion getTexture() {
+        return toothAnimation.getFrame();
     }
 
     public void jump()
     {
-        velocity.y = 200;
+        velocity.y = 150;
     }
 
     public void dash()
@@ -71,6 +75,6 @@ public class Tooth {
 
     public void dispose()
     {
-        tooth.dispose();
+        texture.dispose();
     }
 }
