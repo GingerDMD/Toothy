@@ -9,7 +9,8 @@ import com.tooth.game.ToothGame;
 
 public class Tooth {
     private static final int GRAVITY = -8;
-    private static final int MOVEMENT = 100;
+
+    private int movement = 100;
     private Vector3 position;
     private Vector3 velocity;
     private Rectangle bounds;
@@ -21,8 +22,8 @@ public class Tooth {
         position = new Vector3(x, y, 0);
         velocity = new Vector3(50, 0, 0);
         texture = new Texture("toothfairyanim.png");
-        toothAnimation = new Animation(new TextureRegion(texture), 2, 0.5f);
-        bounds = new Rectangle(x, y, texture.getWidth() / 2, texture.getHeight());
+        toothAnimation = new Animation(new TextureRegion(texture), 4, 0.6f);
+        bounds = new Rectangle(x, y, texture.getWidth() / 4, texture.getHeight());
     }
 
     public void update(float dt)
@@ -43,7 +44,7 @@ public class Tooth {
         {
             position.y = (int)(ToothGame.HEIGHT / 2) - getTexture().getRegionHeight();
         }
-        position.add(MOVEMENT * dt, velocity.y, 0);
+        position.add(movement * dt, velocity.y, 0);
 
         velocity.scl(1/dt);
         bounds.setPosition(position.x, position.y);
@@ -76,5 +77,15 @@ public class Tooth {
     public void dispose()
     {
         texture.dispose();
+    }
+
+    public int getMovement()
+    {
+        return movement;
+    }
+
+    public void setMovement(int move)
+    {
+        this.movement = move;
     }
 }
