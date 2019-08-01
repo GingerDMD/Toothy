@@ -8,8 +8,8 @@ import com.tooth.game.states.GameStateManager;
 import com.tooth.game.states.MenuState;
 
 public class ToothGame extends ApplicationAdapter {
-	public static final int WIDTH = 480;
-	public static final int HEIGHT = 800;
+	public static final int WIDTH = 414;
+	public static final int HEIGHT = 796;
 
 	public static final String TITLE = "TOOTH";
 	private GameStateManager gsm;

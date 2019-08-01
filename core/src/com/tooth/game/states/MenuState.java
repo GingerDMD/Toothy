@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tooth.game.ToothGame;
+import com.tooth.game.sprites.Tooth;
 
 public class MenuState extends State {
     private Texture background;
@@ -11,8 +12,9 @@ public class MenuState extends State {
 
     public MenuState(GameStateManager gsm) {
         super(gsm);
-        background = new Texture("bg_jung.png");
-        playButton = new Texture("play_button.png");
+        //cam.setToOrtho(false, ToothGame.WIDTH / 2, ToothGame.HEIGHT / 2);
+        background = new Texture("bg_color.png");
+        playButton = new Texture("button_play.png");
     }
 
     @Override
@@ -31,6 +33,7 @@ public class MenuState extends State {
 
     @Override
     public void render(SpriteBatch sb) {
+        //sb.setProjectionMatrix(cam.combined);
         sb.begin();
         sb.draw(background, 0, 0, ToothGame.WIDTH, ToothGame.HEIGHT);
         sb.draw(playButton, (ToothGame.WIDTH / 2) - (playButton.getWidth() / 2), (ToothGame.HEIGHT / 2));
